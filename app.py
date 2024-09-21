@@ -56,7 +56,7 @@ def alert(extracted_text):
     # Your email credentials
     sender_email = "siddharth2004awasthi@gmail.com"  # Replace with your Gmail address
     load_dotenv()
-    app_password = os.getenv("APP_PASSWORD")
+    app_password = os.getenv("APP_PASSWORD") 
 
     # Create a multi-part message
     msg = MIMEMultipart()
