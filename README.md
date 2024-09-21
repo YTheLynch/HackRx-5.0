@@ -55,9 +55,13 @@ Most court websites have a “Contact Us” or “Registrar’s Office” sectio
    ```bash
    git clone https://github.com/YTheLynch/HackRx-5.0.git
    cd HackRx-5.0
-   
-2. pip install -r requirements.txt
-
-3. python app.py
+2. **Install required dependencies**
+   ```bash
+   pip install -r requirements.txt
+3. **Install Tesseract OCR Engine from <a href= "https://tesseract-ocr.github.io/tessdoc/Installation.html">here</a>**
+4. **Add Tesseract to PATH**
+5. **Start Flask Server**
+   ```bash
+   python app.py
 
 
