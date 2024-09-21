@@ -2,10 +2,10 @@
 ## 🚀 Insurance Litigation Fraud Detection via Clustering and Anomaly Detection
 
 ## 📋 Table of Contents
-- [Overview](#overview)
-- [Project Structure](#project-structure)
-- [Dataset Description](#dataset-description)
-- [Project Workflow](#project-workflow)
+- [Overview](#-overview)
+- [Project Structure](#-project-structure)
+- [Dataset Description](#-dataset-description)
+- [Project Workflow](#-project-workflow)
   - [1. Data Scraping and Aggregation](#1-data-scraping-and-aggregation)
   - [2. Preprocessing](#2-preprocessing)
   - [3. Word Embedding Generation](#3-word-embedding-generation)
@@ -14,15 +14,15 @@
   - [6. Ensemble Clustering via Majority Voting](#6-ensemble-clustering-via-majority-voting)
   - [7. Clustering Evaluation](#7-clustering-evaluation)
   - [8. Fraud Detection](#8-fraud-detection)
-- [Usage Instructions](#usage-instructions)
+- [Usage Instructions](#-usage-instructions)
   - [1. Install Dependencies](#1-install-dependencies)
   - [2. Run the Main Script](#2-run-the-main-script)
   - [3. Results](#3-results)
   - [4. Visualizations](#4-visualizations)
-- [Evaluation Metrics](#evaluation-metrics)
-- [Model Results](#model-results)
-- [Conclusion](#conclusion)
-- [Future Work](#future-work)
+- [Evaluation Metrics](#-evaluation-metrics)
+- [Model Results](#-model-results)
+- [Conclusion](#-conclusion)
+- [Future Work](#-future-work)
 - [License](#license)
 
 ## 📝 Overview
