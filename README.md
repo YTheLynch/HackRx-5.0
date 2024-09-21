@@ -1,27 +1,34 @@
-# HackRx-5.0
-Legal AI Analytics and Alarm System : VerdictVision
-# Overview:
-This project was developed for the HackRx 5.0 Hackathon, focusing on building an AI-driven analytics and alarm system using data sourced from open court orders and pending petitions across India. The goal is to identify patterns in litigation within the insurance sector, particularly in detecting fraud cases. By leveraging ensemble unsupervised learning and data analytics, we developed a robust system that scrapes legal datasets, trains a fraud detection model, and triggers alerts via an integrated email alarm system when potential fraud cases are identified.
-# Key Features->
-## Data Scraping and Aggregation:
-Datasets were scraped from various sources such as eCourts India and Indian Kanoon using a custom web scraper.
-Focused on pending and disposed litigation in the insurance sector, compiling data from 5 Indian states, with 1,000 records per state.
+# HackRx-5.0 Legal AI Analytics and Alarm System : VerdictVision
+## 🚀 Insurance Litigation Fraud Detection via Clustering and Anomaly Detection
 
-## Fraud Detection Model:
-- Before model training, we preprocessed the data by:
-- Removing stop words to eliminate irrelevant terms.
-- Lemmatizing to reduce words to their base or root form.
-- Using word embeddings to vectorize the input case details, allowing the model to understand semantic meanings.
-- Multiple unsupervised learning algorithms were combined, and the best-performing algorithm was selected for fraud detection.
-Our AI model uses ensemble unsupervised learning to detect fraud patterns in the insurance sector. Multiple unsupervised learning algorithms were combined, and the best-performing algorithm was selected for fraud detection.
-The model identifies fraud cases based on learned patterns and triggers alarms for high-risk cases.
+## 📋 Table of Contents
+- [Overview](#overview)
+- [Project Structure](#project-structure)
+- [Dataset Description](#dataset-description)
+- [Project Workflow](#project-workflow)
+  - [1. Data Scraping and Aggregation](#1-data-scraping-and-aggregation)
+  - [2. Preprocessing](#2-preprocessing)
+  - [3. Word Embedding Generation](#3-word-embedding-generation)
+  - [4. Dimensionality Reduction using PCA](#4-dimensionality-reduction-using-pca)
+  - [5. Clustering Algorithms](#5-clustering-algorithms)
+  - [6. Ensemble Clustering via Majority Voting](#6-ensemble-clustering-via-majority-voting)
+  - [7. Clustering Evaluation](#7-clustering-evaluation)
+  - [8. Fraud Detection](#8-fraud-detection)
+- [Usage Instructions](#usage-instructions)
+  - [1. Install Dependencies](#1-install-dependencies)
+  - [2. Run the Main Script](#2-run-the-main-script)
+  - [3. Results](#3-results)
+  - [4. Visualizations](#4-visualizations)
+- [Evaluation Metrics](#evaluation-metrics)
+- [Model Results](#model-results)
+- [Conclusion](#conclusion)
+- [Future Work](#future-work)
+- [License](#license)
 
-## Alarm Mechanism:
-Upon detecting a potential fraud case, the system sends an email alert using information from court websites to the appropriate registrar’s office or contact person.
-Most court websites have a “Contact Us” or “Registrar’s Office” section where email addresses and phone numbers are listed, making it easier to send direct and immediate alerts.
+## 📝 Overview
+This project focuses on detecting potential fraud in insurance litigation by utilizing advanced machine learning techniques. By employing word embeddings and clustering methods, we identify outliers and unusual patterns in legal case data, flagging cases that may involve fraudulent activities. The dataset is derived from open court records across different states, and we use semantic clustering to group cases and anomaly detection to identify outliers.
 
-### Project Structure:
-
+## 📁 Project Structure
 - **`datasets/`**: Contains legal datasets from 5 Indian states, each with 1,000 records.
   
 - **`python_notebooks/`**: 
@@ -49,19 +56,120 @@ Most court websites have a “Contact Us” or “Registrar’s Office” sectio
 
     - **`scaler.pkl`**: Scaler object used to preprocess input data before passing it to the model for predictions.
 
-  ## Installation Instructions
+
+## 📊 Dataset Description
+The primary dataset `Merged_all_states_data.csv` consists of the following key columns:
+
+| **Column Name** | **Description**                                           |
+|-----------------|-----------------------------------------------------------|
+| Unnamed: 0      | Index column                                              |
+| title           | Title of the litigation case                              |
+| headline        | Case headline providing a brief summary                   |
+| detail_id       | Unique identifier for the case                            |
+| new_link        | Link to the full details of the case                      |
+| Case Details    | Detailed text of the case, including facts, arguments, and judgments |
+
+## 🔄 Project Workflow
+### 1. Data Scraping and Aggregation
+The dataset was compiled using a custom web scraper that extracted data from platforms like eCourts India and Indian Kanoon. The scraper focused on pending and disposed litigation in the insurance sector, gathering data from five Indian states, with 1,000 records collected per state.
+
+### 2. Preprocessing
+The text in the **Case Details** column is cleaned through tokenization, lemmatization, and removal of stop words and punctuation using `spaCy`.
+
+### 3. Word Embedding Generation
+Using `spaCy`'s pre-trained `en_core_web_sm` model, the textual data is converted into word embeddings, which are vector representations capturing semantic meaning.
+
+### 4. Dimensionality Reduction using PCA
+Principal Component Analysis (PCA) is employed to reduce the dimensionality of the word embeddings from 300 dimensions to 50. This step helps streamline the input for clustering.
+
+### 5. Clustering Algorithms
+Multiple clustering techniques are applied to group cases based on their semantic similarity:
+
+- **KMeans:** Groups cases into a pre-defined number of clusters using centroids.
+- **DBSCAN:** A density-based method that identifies core samples and noise.
+- **Agglomerative Clustering:** A hierarchical approach that builds clusters by merging or splitting.
+- **Spectral Clustering:** A graph-based technique using nearest neighbors.
+- **Gaussian Mixture Model (GMM):** A probabilistic model assuming data points are derived from a mixture of Gaussian distributions.
+- **Mean Shift:** A non-parametric clustering method.
+
+### 6. Ensemble Clustering via Majority Voting
+Results from the above models are combined using majority voting. Each case is assigned to the cluster where it was most frequently placed across models. This technique enhances the robustness of the clustering.
+
+### 7. Clustering Evaluation
+**Silhouette Score** is used to assess the cohesion and separation of the clusters. The model with the highest silhouette score is considered the best performing.
+
+### 8. Fraud Detection
+- Clusters with fewer than 20 cases are flagged as potentially fraudulent.
+- **Isolation Forest** is used to detect anomalies within the dataset, helping identify individual cases that stand out based on their features.
+
+## 🛠️ Usage Instructions
+
+### 1. Install Dependencies
+To run the project, first install the required libraries by running the following commands:
+
+
+`pip install spacy pandas tqdm scikit-learn matplotlib numpy`
+`python -m spacy download en_core_web_sm`
+
+### 2. Run the Main Script
+
+
+To process the data and generate the clustering and fraud detection results, execute:
+
 
 1. **Clone the Repository**
-   ```bash
+  
    git clone https://github.com/YTheLynch/HackRx-5.0.git
-   cd HackRx-5.0
-2. **Install required dependencies**
-   ```bash
-   pip install -r requirements.txt
-3. **Install Tesseract OCR Engine from <a href= "https://tesseract-ocr.github.io/tessdoc/Installation.html">here</a>**
-4. **Add Tesseract to PATH**
-5. **Start Flask Server**
-   ```bash
-   python app.py
+   `cd HackRx-5.0`
+   
+2. `pip install -r requirements.txt`
 
+3. `python app.py`
 
+### 3. Results
+
+Once the script runs, the following files will be generated in the `results/` directory:
+
+- `best_model_results.csv`: The output of the best-performing clustering model.
+- `final_fraud_cases.csv`: The list of cases flagged as potential fraud.
+
+### 4. Visualizations
+
+The script also produces a PCA scatter plot to visualize the clustering results in two dimensions. This plot provides insights into how cases are grouped and highlights potential outliers.
+
+## 📈 Evaluation Metrics
+
+The effectiveness of the clustering algorithms is assessed using the following metrics:
+
+- **Silhouette Score:** Ranges between -1 and 1. A higher score indicates better-defined clusters with good separation.
+- **Support:** Proportion of cases belonging to a particular cluster.
+- **Confidence:** Ratio of data points assigned to a cluster relative to the total number of data points.
+
+## 📊 Model Results
+
+The following silhouette scores were obtained for different clustering models:
+
+| **Clustering Model**     | **Silhouette Score** |
+|--------------------------|----------------------|
+| KMeans                   | 0.2947               |
+| DBSCAN                   | -0.3015              |
+| Agglomerative            | 0.2758               |
+| Spectral Clustering      | 0.6787               |
+| Gaussian Mixture         | 0.0929               |
+| Mean Shift               | 0.2534               |
+
+The **Spectral Clustering** model achieved the best performance.
+
+## 📌 Conclusion
+
+This project demonstrates a robust approach to detecting potential fraud in insurance litigation using clustering and anomaly detection techniques. The use of ensemble clustering and word embeddings provides a comprehensive understanding of the dataset and highlights potentially fraudulent cases effectively.
+
+## 🔮 Future Work
+
+- Incorporate additional states and more recent data for better generalization.
+- Explore deep learning techniques for improved word embeddings.
+- Implement a more advanced ensemble method for clustering.
+
+## 📝 License
+
+This project is licensed under the [MIT License](LICENSE).
