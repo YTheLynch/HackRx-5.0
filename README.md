@@ -2,7 +2,7 @@
 Legal AI Analytics and Alarm System
 # Overview:
 This project was developed for the HackRx 5.0 Hackathon, focusing on building an AI-driven analytics and alarm system using data sourced from open court orders and pending petitions across India. The goal is to identify patterns in litigation within the insurance sector, particularly in detecting fraud cases. By leveraging ensemble unsupervised learning and data analytics, we developed a robust system that scrapes legal datasets, trains a fraud detection model, and triggers alerts via an integrated email alarm system when potential fraud cases are identified.
-# Key Features: 
+# Key Features->
 # Data Scraping and Aggregation:
 
 Datasets were scraped from various sources such as eCourts India and Indian Kanoon using a custom web scraper.
@@ -37,11 +37,26 @@ Most court websites have a “Contact Us” or “Registrar’s Office” sectio
     - **`output.css`**
 
 - **`templates/`**: Contains the HTML for the dashboard.
-  - **`index.html`**: The HTML file that structures the web-based dashboard for visualizing the fraud detection insights.
+    - **`index.html`**: The HTML file that structures the web-based dashboard for visualizing the fraud detection insights.
+
+    - **`app.py`**: The Flask application that serves the web-based dashboard and handles backend operations, such as the alarm system and email notifications.
+
+    - **`model.pkl`**: Serialized trained model used for fraud detection.
+
+    - **`scaler.pkl`**: Scaler object used to preprocess input data before passing it to the model for predictions.
+
+  ## Installation Instructions
+
+1. **Clone the Repository**
+   ```bash
+   git clone https://github.com/YTheLynch/HackRx-5.0.git
+   cd HackRx-5.0
+   
+2. pip install -r requirements.txt
+
+3. python app.py
+
+   
+
   
-- **`app.py`**: The Flask application that serves the web-based dashboard and handles backend operations, such as the alarm system and email notifications.
-
-- **`model.pkl`**: Serialized trained model used for fraud detection.
-
-- **`scaler.pkl`**: Scaler object used to preprocess input data before passing it to the model for predictions.
 
