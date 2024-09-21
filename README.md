@@ -108,8 +108,12 @@ Results from the above models are combined using majority voting. Each case is a
 To run the project, first install the required libraries by running the following commands:
 
 
-`pip install spacy pandas tqdm scikit-learn matplotlib numpy`
-`python -m spacy download en_core_web_sm`
+```bash
+pip install spacy pandas tqdm scikit-learn matplotlib numpy
+```
+```bash
+python -m spacy download en_core_web_sm
+```
 
 ### 2. Run the Main Script
 
