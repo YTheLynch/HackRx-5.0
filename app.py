@@ -7,6 +7,12 @@ import spacy
 import joblib
 import pandas as pd
 import numpy as np
+from dotenv import load_dotenv
+import os
+import smtplib
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+
 
 nlp=spacy.load("en_core_web_sm")
 nlp.max_length=2000000
@@ -46,6 +52,37 @@ with open('./model', 'rb') as f:
 with open('./scaler', 'rb') as f:
    scaler = joblib.load(f)
 
+def alert(extracted_text):
+    # Your email credentials
+    sender_email = "siddharth2004awasthi@gmail.com"  # Replace with your Gmail address
+    load_dotenv()
+    app_password = os.getenv("APP_PASSWORD")
+
+    # Create a multi-part message
+    msg = MIMEMultipart()
+    msg['From'] = sender_email
+    msg['To'] = "ishitsetia@gmail.com"
+    msg['Subject'] = "Fraud Case"
+
+    # Attach the body with the msg instance
+    msg.attach(MIMEText(f"Fraud case reported\nCase Details: {extracted_text}", 'plain'))
+
+    # Sending the email
+    try:
+        # Create a secure connection with the server
+        server = smtplib.SMTP('smtp.gmail.com', 587)  # For Gmail SMTP
+        server.starttls()  # Secure the connection
+        server.login(sender_email, app_password)  # Login to the email server
+        server.sendmail(sender_email, "ishitsetia@gmail.com", msg.as_string())  # Send email
+        server.quit()
+
+        print(f"Email sent successfully to {"ishitsetia@gmail.com"}.")
+    
+    except Exception as e:
+        print(f"Failed to send email. Error: {str(e)}")
+
+
+
 
 app = Flask(__name__)
 
@@ -70,6 +107,8 @@ def process_file():
 
         scaled = scaler.transform([embedding])
         result = model.predict(scaled)
+        if result[0] == 1:
+            alert(extracted_text)
         return render_template('index.html', result='Fraud' if result[0] else 'Not Fraud')
 
     return redirect('/')
