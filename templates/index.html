@@ -318,16 +318,16 @@
       <div class="model-container">
         <div class="model-upload-box">
             <h2>Upload a PDF File for Text Extraction</h2>
-            <form action="/process_file" method="POST" enctype="multipart/form-data">
+            <form action="/process_file#services" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file" id="file-input" accept="application/pdf" required>
                 <button type="submit">Upload and Extract Text</button>
             </form>
             <div id="model-result">
-                {% if extracted_text %}
-                    <h3>Extracted Text:</h3>
-                    <p>{{ extracted_text }}</p>
-                {% endif %}
-            </div>
+              {% if result %}
+                  <h3>Result:</h3>
+                  <p>{{ result }}</p>
+              {% endif %}
+          </div>
         </div>
       </div>
 
