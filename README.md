@@ -119,12 +119,19 @@ To process the data and generate the clustering and fraud detection results, exe
 
 1. **Clone the Repository**
   
+   ```bash
    git clone https://github.com/YTheLynch/HackRx-5.0.git
-   `cd HackRx-5.0`
+   ```
+   ```bash
+   cd HackRx-5.0
+   ```
+2. **Install Requirements**
+   ```bash
+   pip install -r requirements.txt
    
-2. `pip install -r requirements.txt`
-
-3. `python app.py`
+3. **Run the code**
+   ```bash
+   python app.py
 
 ### 3. Results
 
