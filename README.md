@@ -144,6 +144,9 @@ Once the script runs, the following files will be generated in the `results/` di
 
 The script also produces a PCA scatter plot to visualize the clustering results in two dimensions. This plot provides insights into how cases are grouped and highlights potential outliers.
 
+![image](https://github.com/user-attachments/assets/d0c79d1e-edc7-48a4-86a0-b04b45d08875)
+
+
 ## 📈 Evaluation Metrics
 
 The effectiveness of the clustering algorithms is assessed using the following metrics:
