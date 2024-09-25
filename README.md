@@ -104,47 +104,20 @@ Results from the above models are combined using majority voting. Each case is a
 
 ## 🛠️ Usage Instructions
 
-### 1. Install Dependencies
-To run the project, first install the required libraries by running the following commands:
-
-
-```bash
-pip install spacy pandas tqdm scikit-learn matplotlib numpy
-```
-```bash
-python -m spacy download en_core_web_sm
-```
-
-### 2. Run the Main Script
-
-
-To process the data and generate the clustering and fraud detection results, execute:
-
-
-1. **Clone the Repository**
-  
+1. Clone the Repository
    ```bash
    git clone https://github.com/YTheLynch/HackRx-5.0.git
-   ```
-   ```bash
    cd HackRx-5.0
-   ```
-2. **Install Requirements**
+2. Install required dependencies
    ```bash
    pip install -r requirements.txt
-   
-3. **Run the code**
+3. Install Tesseract OCR Engine from <a href= "https://tesseract-ocr.github.io/tessdoc/Installation.html">here</a>
+4. Add Tesseract to PATH
+5. Start Flask Server
    ```bash
    python app.py
 
-### 3. Results
-
-Once the script runs, the following files will be generated in the `results/` directory:
-
-- `best_model_results.csv`: The output of the best-performing clustering model.
-- `final_fraud_cases.csv`: The list of cases flagged as potential fraud.
-
-### 4. Visualizations
+## Visualizations
 
 The script also produces a PCA scatter plot to visualize the clustering results in two dimensions. This plot provides insights into how cases are grouped and highlights potential outliers.
 
@@ -183,7 +156,3 @@ This project demonstrates a robust approach to detecting potential fraud in insu
 - Incorporate additional states and more recent data for better generalization.
 - Explore deep learning techniques for improved word embeddings.
 - Implement a more advanced ensemble method for clustering.
-
-## 📝 License
-
-This project is licensed under the [MIT License](LICENSE).
