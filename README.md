@@ -23,7 +23,6 @@
 - [Model Results](#-model-results)
 - [Conclusion](#-conclusion)
 - [Future Work](#-future-work)
-- [License](#-license)
 
 ## 📝 Overview
 This project focuses on detecting potential fraud in insurance litigation by utilizing advanced machine learning techniques. By employing word embeddings and clustering methods, we identify outliers and unusual patterns in legal case data, flagging cases that may involve fraudulent activities. The dataset is derived from open court records across different states, and we use semantic clustering to group cases and anomaly detection to identify outliers.
