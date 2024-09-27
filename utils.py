@@ -11,6 +11,10 @@ import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
+from googletrans import Translator
+
+
+translator = Translator()
 
 
 nlp=spacy.load("en_core_web_sm")
@@ -25,11 +29,14 @@ def extract_text_from_pdf(file):
         page = pdf_document.load_page(page_number)  
         pix = page.get_pixmap()  
         img = Image.open(io.BytesIO(pix.tobytes()))  
-        page_text = pytesseract.image_to_string(img)  
+        page_text = pytesseract.image_to_string(img, lang ='eng+hin+mar+tam')  
         extracted_text += page_text + "\n\n"
     
     pdf_document.close()
-    return extracted_text
+
+    translation = translator.translate(extracted_text)
+    print(translation.text)
+    return translation.text
 
 def preprocess(text):
     doc=nlp(text)

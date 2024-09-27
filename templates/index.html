@@ -122,16 +122,7 @@
               }
             }
           </script>
-          <!-- <div class="swiper-wrapper align-items-center">
-            <div class="swiper-slide"><img src="../static/img/clients/client-1.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../static/img/clients/client-2.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../static/img/clients/client-3.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../static/img/clients/client-4.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../static/img/clients/client-5.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../static/img/clients/client-6.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../static/img/clients/client-7.png" class="img-fluid" alt=""></div>
-            <div class="swiper-slide"><img src="../static/img/clients/client-8.png" class="img-fluid" alt=""></div>
-          </div> -->
+          
         </div>
 
       </div>
@@ -236,15 +227,15 @@
       <!-- Section Title -->
       <div class="container section-title" data-aos="fade-up">
         <h2>Services</h2>
-        <p>Please uplaod your case details file.</p>
+        <p>Please upload your case details file.</p>
       </div><!-- End Section Title -->
 
       <div class="model-container">
         <div class="model-upload-box">
-            <h2>Upload a PDF File for Text Extraction</h2>
+            <h2>Upload a PDF File for Prediction</h2>
             <form action="/process_file#services" method="POST" enctype="multipart/form-data">
                 <input type="file" name="file" id="file-input" accept="application/pdf" required>
-                <button type="submit">Upload and Extract Text</button>
+                <button type="submit">Upload and Predict</button>
             </form>
             <div id="model-result">
               {% if result %}
