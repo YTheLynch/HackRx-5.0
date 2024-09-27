@@ -34,9 +34,12 @@ def extract_text_from_pdf(file):
     
     pdf_document.close()
 
-    translation = translator.translate(extracted_text)
-    print(translation.text)
-    return translation.text
+    try:
+        translation = translator.translate(extracted_text)
+        print(translation.text)
+        return translation.text
+    except: 
+        return extracted_text
 
 def preprocess(text):
     doc=nlp(text)
