@@ -30,5 +30,31 @@ def process_file():
 
     return redirect('/')
 
+@app.route('/search')
+def showsearchpage():
+    return render_template('search.html')
+
+@app.route('/search', methods=['POST'])
+def search():
+    search_query = request.form['search_query']
+    df1 = pd.read_csv('./Datasets/merged_delhi_final_1000.csv')
+    df2 = pd.read_csv('./Datasets/merged_guhati_final_1200.xls')
+    df3 = pd.read_csv('./Datasets/merged_karnataka_final_1048.xls')
+    df4 = pd.read_csv('./Datasets/merged_madras_final_1200.csv')
+    df5 = pd.read_csv('./Datasets/merged_punjb_haryana_final_1000.csv')
+
+    df = pd.concat([df1, df2, df3, df4, df5], axis=0)
+    dfsel = df[['title', 'headline', 'new_link', 'Case Details']]
+
+    result = dfsel[dfsel['title'].str.contains(search_query, case=False, na=False)]
+    
+
+    resultdict = result.to_dict(orient='records')
+
+    if resultdict:
+        return render_template('search.html', results=resultdict, no_results=False)
+    else:
+        return render_template('search.html', results=None, no_results=True)
+
 if __name__ == '__main__':
     app.run(debug=True)
