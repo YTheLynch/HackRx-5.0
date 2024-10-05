@@ -45,7 +45,7 @@ def search():
 
     df = pd.concat([df1, df2, df3, df4, df5], axis=0)
     dfsel = df[['title', 'headline', 'new_link', 'Case Details']]
-
+    
     result = dfsel[dfsel['title'].str.contains(search_query, case=False, na=False)]
     
 
